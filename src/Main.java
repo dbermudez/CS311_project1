@@ -7,27 +7,30 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
 
-    //public Main () {
-    //}
-
     public void getFileName() {
         System.out.println("Enter the filename:");
         fileName = scan.nextLine();
-        System.out.println(fileName);
+        //System.out.println(fileName);
     }
 
-    // prompt for path
-    // open file
-    // echo file to screen
+
     public static void main(String[] args) {
         Main myClass = new Main();
         myClass.getFileName();
 
-        try (BufferedReader b = new BufferedReader(new FileReader(myClass.fileName))) {
+
+
+        try (BufferedReader b = new BufferedReader(
+                new FileReader(System.getProperty("user.dir") + "/src/" + myClass.fileName))) {
+
+            String line;
+            while ((line = b.readLine()) != null) {
+                System.out.println(line);
+            }
 
         }
         catch(Exception e) {
-            //do something
+            System.out.println("File " + System.getProperty("user.dir") + "/src/" + myClass.fileName + " was not found.");
         }
     }
 }
