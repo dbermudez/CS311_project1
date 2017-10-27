@@ -79,9 +79,17 @@ public class Main {
         }
 
         // Print out the string and whether accepted/rejected
-        System.out.print(line + " ");
+        if (state == dead) {
+            System.out.print("Rejected: ");
+        }
+        else if(state == 1 || state == 4 || state == 5 || state == 7) {
+            System.out.print("Accepted: ");
+        }
+        else {
+            System.out.print("Rejected: ");
+        }
 
-
+        System.out.println(line);
     }
 
     private int nextState(int state, char symbol) {
