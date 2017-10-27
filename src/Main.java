@@ -8,17 +8,51 @@ public class Main {
 
 
     private void getFileName() {
-        System.out.println("Enter the filename:");
+        System.out.print("Enter the filename: ");
         fileName = scan.nextLine();
         //System.out.println(fileName);
     }
 
     private void evaluateString(String line) {
+        
+        // state < 0 => dead
+        int state = 0;
         for(int i = 0; i < line.length(); ++i) {
-            System.out.print(line.charAt(i));
+
+            switch(line.charAt(i)) {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case 'E':
+                case 'e':
+                case '+':
+                case '-':
+                case '.':   state = nextState(state, line.charAt(i));
+                            break;
+                default: state = -1;
+            }
+
+            // leave for loop if state is dead, otherwise continue evaluating string
+            if (state < 0) break;
         }
-        System.out.println();
+
+        // Print out the string and whether accepted/rejected
+        System.out.print(line + " ");
+
+
     }
+
+    private int nextState(int state, char letter) {
+        return 0;
+    }
+
 
     public static void main(String[] args) {
         Main myClass = new Main();
