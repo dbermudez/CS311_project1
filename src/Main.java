@@ -1,4 +1,3 @@
-//Alexis Vidal
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -51,6 +50,18 @@ public class Main {
     }
 
     private int nextState(int state, char letter) {
+		int[][] transitionTable = new int[][] {
+		   //0  1  2  3  4  5  6  7  8  9  E  e  +  -  .
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 2, 2, 3},	//initial
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 9, 9, 4},	//see a # 1st
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 3},	//see a +/- 1st
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9},	//see a . 1st
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//#._
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//.#
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 8, 8, 9},	//e_
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9},	//e#
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9}	//e+/-
+		};
         return 0;
     }
 
