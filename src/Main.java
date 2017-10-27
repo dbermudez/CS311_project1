@@ -6,6 +6,20 @@ public class Main {
         String fileName;
         Scanner scan = new Scanner(System.in);
 
+        //accepting states: 1, 4, 5, 7
+        // dead state: 9
+		int[][] transitionTable = new int[][] {
+		   //0  1  2  3  4  5  6  7  8  9  E  e  +  -  .
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 2, 2, 3},	//initial
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 9, 9, 4},	//see a # 1st
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 3},	//see a +/- 1st
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9},	//see a . 1st
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//#._
+			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//.#
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 8, 8, 9},	//e_
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9},	//e#
+			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9}	//e+/-
+		};
 
     private void getFileName() {
         System.out.print("Enter the filename: ");
@@ -14,9 +28,9 @@ public class Main {
     }
 
     private void evaluateString(String line) {
-        
-        // state < 0 => dead
+
         int state = 0;
+        final int dead = 9;
         for(int i = 0; i < line.length(); ++i) {
 
             switch(line.charAt(i)) {
@@ -36,11 +50,11 @@ public class Main {
                 case '-':
                 case '.':   state = nextState(state, line.charAt(i));
                             break;
-                default: state = -1;
+                default: state = dead;
             }
 
             // leave for loop if state is dead, otherwise continue evaluating string
-            if (state < 0) break;
+            if (state == dead) break;
         }
 
         // Print out the string and whether accepted/rejected
@@ -50,21 +64,7 @@ public class Main {
     }
 
     private int nextState(int state, char symbol) {
-		int[][] transitionTable = new int[][] {
-		   //0  1  2  3  4  5  6  7  8  9  E  e  +  -  .
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 2, 2, 3},	//initial
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 9, 9, 4},	//see a # 1st
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 3},	//see a +/- 1st
-			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9},	//see a . 1st
-			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//#._
-			{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 9, 9, 9},	//.#
-			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 8, 8, 9},	//e_
-			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9},	//e#
-			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9}	//e+/-
-		};
-		//accepting states: 1, 4, 5, 7
-		//return transitionTable[state][symbol];
-        return 0;
+		return transitionTable[state][symbol];
     }
 
 
