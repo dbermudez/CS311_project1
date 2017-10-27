@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
         String fileName;
@@ -20,6 +21,26 @@ public class Main {
 			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9},	//e#
 			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9}	//e+/-
 		};
+
+		TreeMap<Character, Integer> column = new TreeMap<Character, Integer>();
+		
+		private void createMap() {
+		column.put('0', 0);
+		column.put('1', 1);
+		column.put('2', 2);
+		column.put('3', 3);
+		column.put('4', 4);
+		column.put('5', 5);
+		column.put('6', 6);
+		column.put('7', 7);
+		column.put('8', 8);
+		column.put('9', 9);
+		column.put('E', 10);
+		column.put('e', 11);
+		column.put('+', 12);
+		column.put('-', 13);
+		column.put('.', 14);
+		}
 
     private void getFileName() {
         System.out.print("Enter the filename: ");
@@ -64,7 +85,7 @@ public class Main {
     }
 
     private int nextState(int state, char symbol) {
-		return transitionTable[state][symbol];
+		return transitionTable[state][column.get(symbol)];
     }
 
 
