@@ -49,7 +49,7 @@ public class Main {
 
     }
 
-    private int nextState(int state, char letter) {
+    private int nextState(int state, char symbol) {
 		int[][] transitionTable = new int[][] {
 		   //0  1  2  3  4  5  6  7  8  9  E  e  +  -  .
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 2, 2, 3},	//initial
@@ -62,6 +62,8 @@ public class Main {
 			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9},	//e#
 			{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9}	//e+/-
 		};
+		//accepting states: 1, 4, 5, 7
+		//return transitionTable[state][symbol];
         return 0;
     }
 
