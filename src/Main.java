@@ -93,7 +93,7 @@ public class Main {
         Main myClass = new Main();
         myClass.getFileName();
 
-
+		myClass.createMap();
 
         try (BufferedReader b = new BufferedReader(
                 new FileReader(System.getProperty("user.dir") + "/src/" + myClass.fileName))) {
