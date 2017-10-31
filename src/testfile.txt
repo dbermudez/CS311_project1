@@ -19,3 +19,7 @@
 3.e+-2
 + -3
 bob
+vidal.2
+2.elephant
+5eed4
+5+4e+2
